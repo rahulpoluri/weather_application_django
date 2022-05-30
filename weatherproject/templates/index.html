@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang={{lang}}>
+{% load static %}
+
+<head>
+  <meta http-equiv="content-type" content="text/html" charset="utf-8"  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css" integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
+  <title>{{ title }}</title>
+
+  <script>
+    window.onload = function() {
+       const urlParams = new URLSearchParams(window.location.search);
+       const language = urlParams.get('lang');
+       language === null ? document.getElementById('lang').value = 'en' : document.getElementById('lang').value = language;
+    };
+  </script>
+</head>
+
+<body>
+  <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <div class="container">
+      <a href="https://github.com/rahulpoluri/weather_application_django" class="navbar-tech">Github - Source Code</a>
+      <select id='lang' class="form-select" onchange={window.location.replace(`http://127.0.0.1:8000/?lang=${document.getElementById('lang').value}`)}>
+        <option value="en" selected>English</option>
+        <option value="de">German</option>
+        <option value="fr">French</option>
+      </select>
+    </div>
+  </div>
+
+  <br /><br /> <br>
+  <div id="jumbotron" class="jumbotron" style="text-align: center; margin-top:-50px">
+    <h1 class="display-5" lang="de"> {{ heading }} </h1>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <form method="post" class="col-md">
+      {% csrf_token %}
+      <div class=" input-group">
+        <input type="text" class="form-control" name="city" placeholder="{{select_city}}">
+        <div class="input-group-btn">
+          <button type="submit" class="btn btn-primary">{{search_btn_text}}</button>
+        </div>
+      </div>
+      <form>
+  </nav>
+  <br> <br>
+  <div class="row">
+    {% if name %}
+    <div class="col d-flex justify-content-center">
+      <div class=" card text-white bg-light mb-6">
+      <div class=" card-body">
+        <h4><span class="badge badge-primary">{{ city_key }} :</span> {{name}} {{country}}</h4>
+        <h4><span class="badge badge-primary">{{ temperature_key }} :</span> {{temp}}°C</h4>
+        <h4><span class="badge badge-primary">{{ min_temperature_key }} :</span> {{min_temp}}°C</h4>
+        <h4><span class="badge badge-primary">{{ max_temperature_key }} :</span> {{max_temp}}°C</h4>
+        <h4><span class="badge badge-primary">{{ humidity_key }} : </span> {{humidity}}%</h4>
+        <h4><span class="badge badge-primary">{{ pressure_key }} :</span> {{pressure}}N/m2</h4>
+        <h4><span class="badge badge-primary">{{ wind_speed_key }} :</span> {{wind_speed}}m/s</h4>
+        <h4><span class="badge badge-primary">{{ wind_direction_key }} :</span> {{wind_direction}} </h4>
+        <h4><span class="badge badge-primary">{{ description_key }} :</span> {{description}} </h4>
+      </div>
+      </div>
+    </div>
+    {% elif error_msg %}
+    <div class="col d-flex justify-content-center">
+      <div class=" card text-white bg-light mb-6">
+        <div class=" card-body">
+          <h4><span class="badge badge-primary">{{ error_msg }}</span></h4>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+</body>
+</html>
