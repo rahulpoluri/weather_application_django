@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from .util import *
+from typing import Any
 
 
 # Create your views here.
-def current_data(request):
+def current_data(request: object) -> object:
     lang = get_language(request.GET)
     context = get_context(lang)
     context["PORT"] = request.META['SERVER_PORT']

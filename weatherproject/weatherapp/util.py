@@ -4,10 +4,11 @@ import logging
 import json
 import os
 import re
-from django.conf import settings 
+from django.conf import settings
+from typing import List, Dict, Union, Any
 
 BASE_DIR = settings.BASE_DIR
-REDIS_TIMEOUT = settings.REDIS_TIMEOUT 
+REDIS_TIMEOUT = settings.REDIS_TIMEOUT
 REDIS_PORT = settings.REDIS_PORT
 REDIS_HOST = settings.REDIS_HOST
 API_KEY = settings.API_KEY
@@ -17,7 +18,8 @@ logging.basicConfig(filename="util_errors.txt",
                     format="%(asctime)s %(levelname)s-%(message)s",
                     datefmt="%Y-%m-%d %H:%M:%S")
 
-def get_cache_connection():
+
+def get_cache_connection() -> Union[object, None]:
     try:
         cache = redis.Redis(host=REDIS_HOST, port=REDIS_PORT)
         return cache
@@ -25,17 +27,20 @@ def get_cache_connection():
         logging.error(e)
         return None
 
-def get_language(get_request):
+
+def get_language(get_request: Dict[str, Any]) -> str:
     if get_request.get("lang", "") in ["en", "fr", "de"]:
         return get_request.get("lang", "")
     else:
         return "en"
 
-def get_context(lang):
+
+def get_context(lang: str) -> str:
     with open(os.path.join(BASE_DIR, "languages", f"{lang}.json"), encoding='utf-8') as file:
         return json.loads(file.read())
 
-def get_valid_input(post_request):
+
+def get_valid_input(post_request: Dict[str, Any]):
     input = re.split("\t|,|\s+|;", post_request.get("city").strip())[:2]
     valid_input = {}
     if len(input) == 2:
@@ -44,7 +49,8 @@ def get_valid_input(post_request):
         valid_input["city"], valid_input["country"] = input[0], ""
     return valid_input
 
-def get_value_from_cache(cache,input,lang):
+
+def get_value_from_cache(cache: object, input: Dict[str, str], lang: str) -> Union[Dict[str, Any], None]:
     value = cache.get(f"{input['city']}_{input['country']}_{lang}")
     if value:
         cur_weather_dict = json.loads(value.decode("utf-8"))
@@ -53,7 +59,8 @@ def get_value_from_cache(cache,input,lang):
     else:
         return None
 
-def get_value_from_API(context,input,lang):
+
+def get_value_from_API(context: Dict[str, str], input: Dict[str, str], lang: str) -> Union[str, None]:
     print(input)
     if input['city'] == "":
         context["error_msg"] = context["error_msg_3"]
@@ -78,12 +85,14 @@ def get_value_from_API(context,input,lang):
     elif api_response.status_code == 200:
         return json.loads(api_response.text)
 
-def set_value_in_cache(cache,input,lang,cur_weather_dict):
+
+def set_value_in_cache(cache: object, input: Dict[str, str], lang: str, cur_weather_dict: Dict[str, Any]) -> None:
     cache.psetex(f"{input['city']}_{input['country']}_{lang}",
                  REDIS_TIMEOUT,
                  json.dumps(cur_weather_dict))
 
-def update_context_with_data(context, cur_weather_dict, lang):
+
+def update_context_with_data(context: Dict[str, str], cur_weather_dict: Dict[str, Any], lang: str) -> None:
     context["lang"] = "fr-FR" if lang == "fr" else "de-DE" if lang == "de" else "en-US"
     context["name"] = cur_weather_dict.get("name")
     context["country"] = cur_weather_dict["sys"]["country"]
@@ -97,7 +106,8 @@ def update_context_with_data(context, cur_weather_dict, lang):
     context["description"] = cur_weather_dict.get("weather", "")[0].get("description", "")
     print(context)
 
-def wind_direction(deg):
+
+def wind_direction(deg: int) -> str:
     if deg >= 348.75 or deg < 11.25:
         direction = "N"
     elif deg >= 11.25 or deg < 33.75:
