@@ -21,10 +21,10 @@
   <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
     <div class="container form-group">
       <a href="https://github.com/rahulpoluri/weather_application_django" class="navbar-tech">Github - Source Code</a>
-      <select id='lang' class="form-select" onchange={window.location.replace(`http://127.0.0.1:{{PORT}}/?lang=${document.getElementById('lang').value}`)}>
-        <option value="en" selected>English</option>
-        <option value="de">German</option>
-        <option value="fr">French</option>
+      <select id='lang' style="border: 6px solid transparent;" class="form-select" onchange={window.location.replace(`http://127.0.0.1:{{PORT}}/?lang=${document.getElementById('lang').value}`)}>
+        <option style="border: 6px solid transparent;" value="en" selected>English</option>
+        <option style="border: 6px solid transparent;" value="de">German</option>
+        <option style="border: 6px solid transparent;" value="fr">French</option>
       </select>
     </div>
   </div>
