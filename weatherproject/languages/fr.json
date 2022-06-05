@@ -21,5 +21,8 @@
 	"wind_speed": null,
 	"wind_direction": null,
 	"description_key": "La description",
-	"description": null
+	"description": null,
+	"error_msg_1":"ville introuvable",
+	"error_msg_2":"Oops! quelque chose s'est mal passé",
+	"error_msg_3":"Veuillez entrer le nom de la ville"
 }

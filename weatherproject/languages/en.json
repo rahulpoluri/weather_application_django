@@ -1,4 +1,5 @@
 {
+
 	"title": "Weather App",
 	"heading": "Know Weather Anywhere",
         "select_city": "City, CountryCode",
@@ -21,5 +22,8 @@
 	"wind_speed": null,
 	"wind_direction": null,
 	"description_key": "Description",
-        "description": null
+        "description": null,
+	"error_msg_1":"city not found",
+	"error_msg_2":"Oops something went wrong",
+	"error_msg_3":"Please enter city name"
 }

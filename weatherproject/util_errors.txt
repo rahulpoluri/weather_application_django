@@ -1,0 +1,54 @@
+2022-06-05 05:37:26 ERROR-Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/code/weatherapp/views.py", line 7, in current_data
+    lang = get_language(request.GET)
+  File "/code/weatherapp/util.py", line 30, in get_language
+    return request.GET.get("lang", "")
+NameError: name 'request' is not defined
+2022-06-05 05:40:19 ERROR-Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/code/weatherapp/views.py", line 7, in current_data
+    lang = get_language(request.GET)
+  File "/code/weatherapp/util.py", line 30, in get_language
+    return request.GET.get("lang", "")
+NameError: name 'request' is not defined
+2022-06-05 05:44:51 ERROR-city not found
+2022-06-05 06:48:45 WARNING-Not Found: /favicon.ico
+2022-06-05 07:11:18 ERROR-city not found
+2022-06-05 07:11:23 ERROR-city not found
+2022-06-05 07:11:28 ERROR-city not found
+2022-06-05 07:11:34 ERROR-city not found
+2022-06-05 07:11:54 ERROR-city not found
+2022-06-05 07:13:33 ERROR-city not found
+2022-06-05 07:13:39 ERROR-city not found
+2022-06-05 09:34:38 WARNING-Not Found: /favicon.ico
+2022-06-05 09:35:04 WARNING-Not Found: /favicon.ico
+2022-06-05 09:35:23 ERROR-city not found
+2022-06-05 10:36:33 ERROR-city not found
+2022-06-05 10:36:42 ERROR-Stadt nicht gefunden
+2022-06-05 10:36:52 ERROR-ville introuvable
+2022-06-05 10:38:22 ERROR-Oops something went wrong
+2022-06-05 10:42:04 ERROR-Oops something went wrong
+2022-06-05 10:47:03 ERROR-Oops something went wrong
+2022-06-05 10:57:35 ERROR-Please enter city name
+2022-06-05 10:57:42 ERROR-city not found
+2022-06-05 10:57:51 ERROR-Please enter city name
+2022-06-05 10:58:00 ERROR-Please enter city name
+2022-06-05 10:58:03 ERROR-Please enter city name
+2022-06-05 10:58:13 ERROR-city not found
+2022-06-05 10:58:32 ERROR-city not found
+2022-06-05 10:59:02 ERROR-Bitte geben Sie den Namen der Stadt ein
+2022-06-05 10:59:09 ERROR-Stadt nicht gefunden
+2022-06-05 10:59:18 ERROR-Stadt nicht gefunden
+2022-06-05 10:59:25 ERROR-Bitte geben Sie den Namen der Stadt ein
+2022-06-05 11:00:32 ERROR-Veuillez entrer le nom de la ville
+2022-06-05 11:00:44 ERROR-ville introuvable
+2022-06-05 11:00:52 ERROR-ville introuvable

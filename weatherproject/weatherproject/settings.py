@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,16 +82,11 @@ DATABASES = {
     }
 }
 
-CACHES = {
-     "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-         }
-    }
- }
-REDIS_TIMEOUT = 60 
+REDIS_TIMEOUT = os.environ.get('REDIS_TIMEOUT')
+REDIS_PORT = 6379
+REDIS_HOST = 'redis'
+
+API_KEY = '014ec5fe82d5d8d60b5df7a9a9fbd325'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

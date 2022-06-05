@@ -21,5 +21,8 @@
 	"wind_speed": null,
 	"wind_direction": null,
 	"description_key": "Beschreibung",
-	"description": null
+	"description": null,
+	"error_msg_1":"Stadt nicht gefunden",
+	"error_msg_2":"Hoppla! etwas ist schief gelaufen",
+	"error_msg_3":"Bitte geben Sie den Namen der Stadt ein"
 }
