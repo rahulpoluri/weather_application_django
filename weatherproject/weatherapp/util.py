@@ -61,7 +61,7 @@ def get_value_from_cache(cache: object, input: Dict[str, str], lang: str) -> Uni
 
 
 def get_value_from_API(context: Dict[str, str], input: Dict[str, str], lang: str) -> Union[str, None]:
-    print(input)
+    print("input: ",input)
     if input['city'] == "":
         context["error_msg"] = context["error_msg_3"]
         logging.error(context["error_msg"])
@@ -72,8 +72,9 @@ def get_value_from_API(context: Dict[str, str], input: Dict[str, str], lang: str
          f"lang={lang}&"
          f"units=metric&"
          f"appid={API_KEY}"))
-    print(api_response)
+    print("api_respomse: ",api_response)
     context["api_error_msg"] = json.loads(api_response.text).get("message")
+    print("context: ",context)
     if api_response.status_code == 404:
         context["error_msg"] = context["error_msg_1"]
         logging.error(context["error_msg"])
@@ -104,7 +105,7 @@ def update_context_with_data(context: Dict[str, str], cur_weather_dict: Dict[str
     context["wind_speed"] = cur_weather_dict.get("wind", "").get("speed", "")
     context["wind_direction"] = wind_direction(cur_weather_dict.get("wind", "").get("deg", ""))
     context["description"] = cur_weather_dict.get("weather", "")[0].get("description", "")
-    print(context)
+    print("context_updated: ",context)
 
 
 def wind_direction(deg: int) -> str:

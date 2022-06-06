@@ -20,7 +20,7 @@
 <body>
   <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
     <div class="container form-group">
-      <a href="https://github.com/rahulpoluri/weather_application_django" class="navbar-tech">Github - Source Code</a>
+      <a href="https://github.com/rahulpoluri/weather_application_django" class="navbar-tech" target="_blank">Github - Source Code</a>
       <select id='lang' style="border: 6px solid transparent;" class="form-select" onchange={window.location.replace(`http://127.0.0.1:{{PORT}}/?lang=${document.getElementById('lang').value}`)}>
         <option style="border: 6px solid transparent;" value="en" selected>English</option>
         <option style="border: 6px solid transparent;" value="de">German</option>
@@ -56,7 +56,7 @@
         <h4><span class="badge badge-primary">{{ min_temperature_key }} :</span> {{min_temp}}°C</h4>
         <h4><span class="badge badge-primary">{{ max_temperature_key }} :</span> {{max_temp}}°C</h4>
         <h4><span class="badge badge-primary">{{ humidity_key }} : </span> {{humidity}}%</h4>
-        <h4><span class="badge badge-primary">{{ pressure_key }} :</span> {{pressure}}N/m2</h4>
+        <h4><span class="badge badge-primary">{{ pressure_key }} :</span> {{pressure}}N/m<sup>2</sup></h4>
         <h4><span class="badge badge-primary">{{ wind_speed_key }} :</span> {{wind_speed}}m/s</h4>
         <h4><span class="badge badge-primary">{{ wind_direction_key }} :</span> {{wind_direction}} </h4>
         <h4><span class="badge badge-primary">{{ description_key }} :</span> {{description}} </h4>

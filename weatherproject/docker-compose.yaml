@@ -10,6 +10,6 @@ services:
     depends_on:
       - redis
     environment:
-      - REDIS_TIMEOUT=10000
+      - REDIS_TIMEOUT=300000
   redis:
     image: "redis:alpine"
